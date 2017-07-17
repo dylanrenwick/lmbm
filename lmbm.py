@@ -35,6 +35,13 @@ def move_pointers(pointer_list):
             vprint('Pointer %s has coords [%s, %s], killing' % (p.id, p.x, p.y))
             p.alive = False
 
+def is_int(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
 def vprint(obj):
     global verbose
     if verbose: print(str(obj))
@@ -50,15 +57,23 @@ def run_pointers(pointer_list):
             pointer.value = ord(char)
             pointer.string = False
         elif char == 'U':
+            vprint('  Killing pointer and printing value as char')
             pointer.alive = False
             print(chr(pointer.value), end='')
+        elif char == 'u':
+            vprint('  Killing pointer and printing value')
+            pointer.alive = False
+            print(pointer.value, end='')
         elif char == '/':
+            vprint('  Moving pointer left')
             pointer.x -= 1
             pointer.spin = 0
         elif char == '\\':
+            vprint('  Moving pointer right')
             pointer.x += 1
             pointer.spin = 1
         elif char == '|':
+            vprint('  Reflecting pointer direction')
             if pointer.spin:
                 pointer.x -= 1
                 pointer.spin = 0
@@ -70,12 +85,41 @@ def run_pointers(pointer_list):
         elif char == '"':
             pointer.string = True
         elif char == '!':
+            vprint('  Printing value as char')
             print(chr(pointer.value), end='')
+        elif char == '$':
+            vprint('  Printing value')
+            print(pointer.value, end='')
         elif char == '^':
             newDir = random.choice([0, 1])
             vprint('Random number is %s' % newDir)
             pointer.spin = newDir
             pointer.x += newDir if newDir else -1
+        elif char == '?':
+            if pointer.value:
+                pointer.spin = 1
+            else:
+                pointer.spin = 0
+        elif char == '_':
+            if pointer.spin:
+                pointer.x += 1
+            else:
+                pointer.x -= 1
+        elif char == '~':
+            vprint('  Trampolining pointer to top')
+            pointer.y = 0
+        elif char == 'i':
+            vprint('  Fetching input')
+            try:
+                inp = input()
+                if inp:
+                    if is_int(inp):
+                        pointer.value = int(inp)
+                    else:
+                        pointer.value = ord(inp[0])
+            except EOFError:
+                pointer.value = pointer.value                
+
 
 
 if len(argv) < 2:
