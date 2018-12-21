@@ -177,6 +177,9 @@ def run_pointers(pointer_list):
             if held:
                 p.value %= held[0].value
                 held[0].aluve = False
+        elif char == '`':
+            vprint('Throwing error')
+            raise Exception('Error character')
         elif char == ';':
             p.alive = False
         elif char == '(':
