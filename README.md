@@ -36,9 +36,10 @@ Any character that is not a valid peg is essentially a comment or no-op, includi
     _      - Move one space in the direction of the marble's spin
     ~      - Trampoline the marble up to the top of it's current column
     i      - Read one number or one character from STDIN and set the marble's value to it
-    +*/-%# - Mathematical operators, the first marble to hit these are "held", and upon a second marble 
+    +*&-%# - Mathematical operators, the first marble to hit these are "held", and upon a second marble 
              hitting the peg, the held marble's value is applied to the second marble using the relevant
              operator, then the held marble is destroyed, note that # is exponentiation
+			 NOTE: Due to the / character being already in use, & is the division operator
     ;      - Destroy the marble
     (      - Increment the marble's value
     )      - Decrement the marble's value
@@ -46,3 +47,4 @@ Any character that is not a valid peg is essentially a comment or no-op, includi
     T      - Set the marble's value to 10
     x      - Set the marble's value to its x position in the code
     y      - Set the marble's value to its y position in the code
+	`      - Throw a generic error
