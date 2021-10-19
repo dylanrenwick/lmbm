@@ -101,14 +101,14 @@ def run_pointers(pointer_list):
             p.xvel = 0
         elif char == 'o':
             vprint('  Creating new marble')
+            newPoint = pointer([p.y, p.x - (1 if p.spin else -1)], len(pointer_list))
+            newPoint.spin = 0 if p.spin else 0
+            newPoint.value = p.value
+            pointer_list.append(newPoint)
             if p.spin:
                 p.x += 1
             else:
                 p.x -= 1
-            newPoint = pointer([p.x - (1 if p.spin else -1), p.y], len(pointer_list))
-            newPoint.spin = 0 if p.spin else 0
-            newPoint.value = p.value
-            pointer_list.append(newPoint)
         elif char == '"':
             vprint('  Entering string mode')
             p.string = True
