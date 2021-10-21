@@ -16,6 +16,7 @@ class pointer:
         self.value = 0
         self.spin = 0
         self.string = False
+        self.pause = 0
     def __repr__(self):
         return str([[self.x, self.y], [self.xvel, self.yvel]])
 
@@ -32,6 +33,9 @@ def move_pointers(pointer_list):
     for i in range(0, len(pointer_list)):
         p = pointer_list[i]
         if p.held or not p.alive: continue
+        if p.pause > 0:
+            p.pause -= 1
+            continue
         p.x += p.xvel
         p.y += p.yvel
         vprint('Moving pointer %s: [%s, %s], new pos is [%s, %s]' % (p.id, p.xvel, p.yvel, p.x, p.y))
@@ -185,7 +189,14 @@ def run_pointers(pointer_list):
         elif char == ')':
             p.value -= 1
         elif char == ':':
+            vprint('  Pointer spin is %s, setting value to %s' % (('Right' if p.spin else 'Left'), p.spin))
             p.value = p.spin
+        elif char == ',':
+            vprint('  Pausing pointer for 1 tick')
+            p.pause = 1
+        elif char == '.':
+            vprint('  Pausing pointer for %s ticks' % p.value)
+            p.pause = p.value
 
 
 

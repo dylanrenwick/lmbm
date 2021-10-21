@@ -48,3 +48,5 @@ Any character that is not a valid peg is essentially a comment or no-op, includi
     x      - Set the marble's value to its x position in the code
     y      - Set the marble's value to its y position in the code
 	`      - Throw a generic error
+    ,      - Holds the marble here for 1 tick
+    .      - Holds the marble here for a number of ticks equal to the marble's value
