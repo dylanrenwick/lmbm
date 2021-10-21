@@ -23,7 +23,7 @@ Any character that is not a valid peg is essentially a comment or no-op, includi
     u      - Destroys the marble and prints its value
     /      - Moves the marble to the left, and sets its spin to left
     \      - Moves the marble to the right, and sets its spin to right
-    |      - Reverses the marble's current spin and horizontal direction
+    |      - Reverses the marble's current spin
     v      - Halts any horizontal movement
     o      - Moves the marble one space in the direction of its spin, and creates a second marble with 
              the same value but opposite spin, and moves it one space in the opposite direction
