@@ -92,10 +92,8 @@ def run_pointers(pointer_list):
         elif char == '|':
             vprint('  Reflecting pointer direction')
             if p.spin:
-                p.x -= 1
                 p.spin = 0
             else:
-                p.x += 1
                 p.spin = 1
         elif char == 'v':
             p.xvel = 0
