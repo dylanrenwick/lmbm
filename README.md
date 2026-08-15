@@ -5,7 +5,7 @@
 LMBM is a Plinko-inspired 2d esoteric language, with a focus on randomness.
 
 At the start of the program's execution, each row of code is right-padded with spaces to the length of the longest row, and an instruction pointer, referred to as a bean, is spawned at every uppercase `O` in the code.  
-These beans always begin with a spin to the right, and a value of 0.
+These beans always begin with a spin to the right (1), and a value of 0.
 
 Every tick, each bean will drop down one character, then run the command, or "peg" it is on.  
 Beans are calculated based on where they spawned, those that spawned in the top left will run first, then going across, then down.
@@ -48,7 +48,7 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
     )      - Decrement the bean's value
     [      - Dyadic min; hold first bean until a second hits, output the lower value and destroy the other
     ]      - Dyadic max; hold first bean until a second hits, output the higher value and destroy the other
-    :      - Set the bean's value to its spin (Right is 1, Left is 0)
+    :      - Set the bean's value to its spin (Right is 1, Left is -1)
     T      - Set the bean's value to 10
     x      - Set the bean's value to its x position in the code
     y      - Set the bean's value to its y position in the code
