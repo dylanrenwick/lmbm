@@ -194,6 +194,15 @@ def run_pointers(pointer_list):
             if held:
                 p.value %= held[0].value
                 held[0].alive = False
+        elif char == '@':
+            held = handle_operator_held(pointer_list, p)
+            if held:
+                left = p if p.value < held[0].value else held[0]
+                right = held[0] if p.value < held[0].value else p
+                left.x -= 1
+                left.spin = -1
+                right.x += 1
+                right.spin = 1
         elif char == '[':
             held = handle_operator_held(pointer_list, p)
             if held:
