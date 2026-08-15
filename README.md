@@ -26,15 +26,14 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
     \      - Moves the bean to the right, and sets its spin to right
     |      - Reverses the bean's current spin
     v      - Halts any horizontal movement
-    o      - Moves the bean one space in the direction of its spin, and creates a second bean with 
-             the same value but opposite spin, and moves it one space in the opposite direction
+    o      - Duplicates the bean, outputting one copy to the left and the other to the right
     "      - Enters the bean into string mode, the bean's value will be set to the Unicode 
              codepoint of the next peg it reaches, including no-ops
     !      - Prints the bean's value as a Unicode character
     $      - Prints the bean's value
     ^      - Moves the bean left or right with a uniformly random probability
     ?      - If the bean's value is truthy (not zero) set its spin to right, otherwise set its spin to left
-    _      - Move one space in the direction of the bean's spin
+    _      - Move left if the bean's spin is -1, and right if the bean's spin is 1
     ~      - Trampoline the bean up to the top of it's current column
     i      - Read one number or one character from STDIN and set the bean's value to it
     +      - Dyadic addition
@@ -59,4 +58,6 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
 
 Dyadic pegs are pegs that take 2 separate beans as input. When the first bean reaches a dyadic peg, that bean will be held there until a second bean hits the peg. At that time, the operator will process with both beans as inputs.  
 When a dyadic peg's operand order matters, eg subtract, exponent, and divide, bean operands are ordered in the order they arrived at the peg. 
+
+Pegs with 2 outputs such as `o` and `@` will set the beans' spins accordingly; the bean output to the left will have a spin of -1, and the bean output to the right will have a spin of 1.
 
