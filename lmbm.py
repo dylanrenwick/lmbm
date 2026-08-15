@@ -181,6 +181,16 @@ def run_pointers(pointer_list):
             if held:
                 p.value %= held[0].value
                 held[0].aluve = False
+        elif char == '[':
+            held = handle_operator_held(pointer_list, p)
+            if held:
+                p.value = min(held[0].value, p.value)
+                held[0].alive = False
+        elif char == ']':
+            held = handle_operator_held(pointer_list, p)
+            if held:
+                p.value = max(held[0].value, p.value)
+                held[0].alive = False
         elif char == '`':
             vprint('Throwing error')
             raise Exception('Error character')
