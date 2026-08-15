@@ -178,22 +178,22 @@ def run_pointers(pointer_list):
         elif char == '-':
             held = handle_operator_held(pointer_list, p)
             if held:
-                p.value -= held[0].value
+                p.value = held[0].value - p.value
                 held[0].alive = False
         elif char == '&':
             held = handle_operator_held(pointer_list, p)
             if held:
-                p.value /= held[0].value
+                p.value = held[0].value / p.value
                 held[0].alive = False
         elif char == '#':
             held = handle_operator_held(pointer_list, p)
             if held:
-                p.value = p.value ** held[0].value
+                p.value = held[0].value ** p.value
                 held[0].alive = False
         elif char == '%':
             held = handle_operator_held(pointer_list, p)
             if held:
-                p.value %= held[0].value
+                p.value = held[0].value % p.value
                 held[0].alive = False
         elif char == '@':
             held = handle_operator_held(pointer_list, p)
