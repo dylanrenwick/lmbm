@@ -14,7 +14,7 @@ class pointer:
         self.alive = True
         self.held = False
         self.value = 0
-        self.spin = 0
+        self.spin = 1
         self.string = False
         self.pause = 0
     def __repr__(self):
@@ -112,7 +112,7 @@ def run_pointers(pointer_list):
         elif char == '/':
             vprint('  Moving pointer left')
             p.x -= 1
-            p.spin = 0
+            p.spin = -1
         elif char == '\\':
             vprint('  Moving pointer right')
             p.x += 1
@@ -221,7 +221,7 @@ def run_pointers(pointer_list):
         elif char == ')':
             p.value -= 1
         elif char == ':':
-            vprint('  Pointer spin is %s, setting value to %s' % (('Right' if p.spin else 'Left'), p.spin))
+            vprint('  Pointer spin is %s, setting value to %s' % (('Right' if p.spin == 1 else 'Left'), p.spin))
             p.value = p.spin
         elif char == ',':
             vprint('  Pausing pointer for 1 tick')
