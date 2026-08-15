@@ -101,6 +101,9 @@ def run_pointers(pointer_list):
             p.string = False
         elif is_int(char):
             p.value = int(char)
+        elif char == 'T':
+            vprint('  Setting value to 10')
+            p.value = 10
         elif char == 'U':
             vprint('  Killing pointer and printing value as char')
             p.alive = False
