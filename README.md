@@ -52,7 +52,7 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
     T      - Set the bean's value to 10
     x      - Set the bean's value to its x position in the code
     y      - Set the bean's value to its y position in the code
-	`      - Throw a generic error
+	`      - Destroys all beans, silently terminating
     ,      - Holds the bean here for 1 tick
     .      - Holds the bean here for a number of ticks equal to the bean's value
 

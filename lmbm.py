@@ -211,8 +211,9 @@ def run_pointers(pointer_list):
                 p.value = max(held[0].value, p.value)
                 held[0].alive = False
         elif char == '`':
-            vprint('Throwing error')
-            raise Exception('Error character')
+            vprint('Terminating')
+            for pntr in pointer_list:
+                pntr.alive = False
         elif char == ';':
             p.alive = False
         elif char == '(':
