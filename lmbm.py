@@ -122,10 +122,7 @@ def run_pointers(pointer_list):
             p.spin = 1
         elif char == '|':
             vprint('  Reflecting pointer direction')
-            if p.spin:
-                p.spin = 0
-            else:
-                p.spin = 1
+            p.spin = -p.spin
         elif char == 'v':
             p.xvel = 0
         elif char == 'o':
@@ -154,12 +151,9 @@ def run_pointers(pointer_list):
             if p.value:
                 p.spin = 1
             else:
-                p.spin = 0
+                p.spin = -1
         elif char == '_':
-            if p.spin:
-                p.x += 1
-            else:
-                p.x -= 1
+            p.x += p.spin
         elif char == '~':
             vprint('  Trampolining pointer to top')
             p.y = -1
