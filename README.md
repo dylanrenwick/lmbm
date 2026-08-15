@@ -43,6 +43,7 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
     %      - Dyadic modulus
     &      - Dyadic division (design note: / is already taken)
     #      - Dyadic exponent (design note: ^ is already taken)
+    @      - Dyadic sort, outputs lower value to left, higher value to right
     ;      - Destroy the bean
     (      - Increment the bean's value
     )      - Decrement the bean's value
