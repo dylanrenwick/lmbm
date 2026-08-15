@@ -35,6 +35,7 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
     ?      - If the bean's value is truthy (not zero) set its spin to right, otherwise set its spin to left
     _      - Move left if the bean's spin is -1, and right if the bean's spin is 1
     ~      - Trampoline the bean up to the top of it's current column
+    =      - Acts as "top of column" for any trampolines below it in the same column
     i      - Read one number or one character from STDIN and set the bean's value to it
     +      - Dyadic addition
     *      - Dyadic multiplication
