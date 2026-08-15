@@ -16,7 +16,8 @@ The program terminates when all beans are destroyed.
 
 ### Pegs
 
-Any character that is not a valid peg is essentially a comment or no-op, including spaces.
+Any character that is not a valid peg is essentially a comment or no-op, including spaces.  
+Note that despite being the standard spawn point for beans, `O` is otherwise considered a no-op.
 
     0-9    - Sets the bean's value to the single digit integer
     U      - Destroys the bean and prints its value as a Unicode character
@@ -36,10 +37,12 @@ Any character that is not a valid peg is essentially a comment or no-op, includi
     _      - Move one space in the direction of the bean's spin
     ~      - Trampoline the bean up to the top of it's current column
     i      - Read one number or one character from STDIN and set the bean's value to it
-    +*&-%# - Mathematical operators, the first bean to hit these are "held", and upon a second bean 
-             hitting the peg, the held bean's value is applied to the second bean using the relevant
-             operator, then the held bean is destroyed, note that # is exponentiation
-			 NOTE: Due to the / character being already in use, & is the division operator
+    +      - Dyadic addition
+    *      - Dyadic multiplication
+    -      - Dyadic subtraction
+    %      - Dyadic modulus
+    &      - Dyadic division (design note: / is already taken)
+    #      - Dyadic exponent (design note: ^ is already taken)
     ;      - Destroy the bean
     (      - Increment the bean's value
     )      - Decrement the bean's value
@@ -52,3 +55,7 @@ Any character that is not a valid peg is essentially a comment or no-op, includi
 	`      - Throw a generic error
     ,      - Holds the bean here for 1 tick
     .      - Holds the bean here for a number of ticks equal to the bean's value
+
+Dyadic pegs are pegs that take 2 separate beans as input. When the first bean reaches a dyadic peg, that bean will be held there until a second bean hits the peg. At that time, the operator will process with both beans as inputs.  
+When a dyadic peg's operand order matters, eg subtract, exponent, and divide, bean operands are ordered in the order they arrived at the peg. 
+
