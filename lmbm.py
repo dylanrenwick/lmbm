@@ -37,7 +37,8 @@ def move_pointers(pointer_list):
             p.pause -= 1
             if p.pause > 0:
                 continue
-            vprint('Pointer %s done pausing')
+            else:
+                vprint('  Pointer %s done pausing' % p.id)
         p.x += p.xvel
         p.y += p.yvel
         vprint('Moving pointer %s: [%s, %s], new pos is [%s, %s]' % (p.id, p.xvel, p.yvel, p.x, p.y))
@@ -90,7 +91,7 @@ def vprint(obj):
 def run_pointers(pointer_list):
     for i in range(0, len(pointer_list)):
         p = pointer_list[i]
-        if p.held or not p.alive: continue
+        if p.held or not p.alive or p.pause > 0: continue
         char = code[p.y][p.x]
         vprint('Pointer %s is at char %s' % (i, char))
 
@@ -217,10 +218,10 @@ def run_pointers(pointer_list):
             p.value = p.spin
         elif char == ',':
             vprint('  Pausing pointer for 1 tick')
-            p.pause = 1
+            p.pause = 2
         elif char == '.':
             vprint('  Pausing pointer for %s ticks' % p.value)
-            p.pause = p.value
+            p.pause = p.value + 1
 
 
 
