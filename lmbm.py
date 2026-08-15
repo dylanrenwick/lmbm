@@ -35,7 +35,9 @@ def move_pointers(pointer_list):
         if p.held or not p.alive: continue
         if p.pause > 0:
             p.pause -= 1
-            continue
+            if p.pause > 0:
+                continue
+            vprint('Pointer %s done pausing')
         p.x += p.xvel
         p.y += p.yvel
         vprint('Moving pointer %s: [%s, %s], new pos is [%s, %s]' % (p.id, p.xvel, p.yvel, p.x, p.y))
@@ -47,7 +49,7 @@ def handle_operator_held(pointer_list, pointer):
     held_pointers = find_held_pointers(pointer_list, pointer.x, pointer.y)
     vprint('  Found %s held pointers' % len(held_pointers))
     if not held_pointers:
-        vprint('  Holding pointer')
+        vprint('  Holding pointer at [%s, %s]' % (pointer.x, pointer.y))
         pointer.held = True
         return False
     else:
