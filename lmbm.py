@@ -56,6 +56,12 @@ def handle_operator_held(pointer_list, pointer):
     else:
         return held_pointers
 
+def find_trampoline_ceiling(pointer):
+    y = pointer.y - 1
+    while y >= 0 and code[y][pointer.x] != '=':
+        y -= 1
+    return y
+
 def read_input():
     global input_buffer
     if len(input_buffer) == 0:
@@ -158,7 +164,7 @@ def run_pointers(pointer_list):
             p.x += p.spin
         elif char == '~':
             vprint('  Trampolining pointer to top')
-            p.y = -1
+            p.y = find_trampoline_ceiling(p)
         elif char == 'i':
             p.value = read_input()
         elif char == '+':
