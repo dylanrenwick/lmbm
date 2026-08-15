@@ -144,15 +144,17 @@ def run_pointers(pointer_list):
             print(p.value, end='')
         elif char == '^':
             newDir = random.choice([0, 1])
-            vprint('Random number is %s' % newDir)
+            vprint('  Random number is %s' % newDir)
             p.spin = newDir
             p.x += newDir if newDir else -1
         elif char == '?':
+            vprint('  Value of %s is %szero' % (p.value, 'non-' if p.value else ''))
             if p.value:
                 p.spin = 1
             else:
                 p.spin = -1
         elif char == '_':
+            vprint('  Moving %s' % ('Left' if p.spin == -1 else 'Right'))
             p.x += p.spin
         elif char == '~':
             vprint('  Trampolining pointer to top')
