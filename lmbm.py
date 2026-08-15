@@ -72,7 +72,7 @@ def read_input():
             inp = ''
         if len(inp) == 0:
             vprint('  Input was empty, setting to 0')
-            return 0
+            return False
         elif is_int(inp):
             vprint('  Input was int %s' % inp)
             return int(inp)
@@ -166,7 +166,12 @@ def run_pointers(pointer_list):
             vprint('  Trampolining pointer to top')
             p.y = find_trampoline_ceiling(p)
         elif char == 'i':
-            p.value = read_input()
+            read_value = read_input()
+            if read_value is False:
+                p.spin = -1
+            else:
+                p.spin = 1
+                p.value = read_value
         elif char == '+':
             held = handle_operator_held(pointer_list, p)
             if held:

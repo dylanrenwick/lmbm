@@ -22,11 +22,12 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
     0-9    - Sets the bean's value to the single digit integer
     U      - Destroys the bean and prints its value as a Unicode character
     u      - Destroys the bean and prints its value
-    /      - Moves the bean to the left, and sets its spin to left
-    \      - Moves the bean to the right, and sets its spin to right
+    /      - Moves the bean to the left, and sets its spin to -1
+    \      - Moves the bean to the right, and sets its spin to 1
     |      - Reverses the bean's current spin
     v      - Halts any horizontal movement
     o      - Duplicates the bean, outputting one copy to the left and the other to the right
+           - Each copy has its spin set according to the direction it was output
     "      - Enters the bean into string mode, the bean's value will be set to the Unicode 
              codepoint of the next peg it reaches, including no-ops
     !      - Prints the bean's value as a Unicode character
@@ -37,6 +38,8 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
     ~      - Trampoline the bean up to the top of it's current column
     =      - Acts as "top of column" for any trampolines below it in the same column
     i      - Read one number or one character from STDIN and set the bean's value to it
+           - Sets the bean's spin to 1 if a value was read, and -1 if EOF is found
+           - If EOF is found, the bean's value is unchanged
     +      - Dyadic addition
     *      - Dyadic multiplication
     -      - Dyadic subtraction
