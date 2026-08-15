@@ -22,7 +22,7 @@ class pointer:
 
 def is_alive(pointer_list):
     bools = [i.alive for i in pointer_list]
-    vprint('Alive: %s' % bools)
+    vprint('Alive: %s' % [(p.value, p.spin) if p.alive else 'Dead' for p in pointer_list])
     return any(bools)
 
 def find_held_pointers(pointer_list, x, y):
