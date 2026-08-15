@@ -55,6 +55,27 @@ def handle_operator_held(pointer_list, pointer):
     else:
         return held_pointers
 
+def read_input():
+    global input_buffer
+    if len(input_buffer) == 0:
+        vprint('  Reading next line of input')
+        try:
+            inp = input()
+        except EOFError:
+            inp = ''
+        if len(inp) == 0:
+            vprint('  Input was empty, setting to 0')
+            return 0
+        elif is_int(inp):
+            vprint('  Input was int %s' % inp)
+            return int(inp)
+        else:
+            vprint('  Input was "%s"' % inp)
+            input_buffer = list(inp)
+    next_chr = input_buffer.pop(0)
+    vprint('  Read %s from input' % next_chr)
+    return ord(next_chr)
+
 def is_int(s):
     try:
         int(s)
@@ -141,16 +162,7 @@ def run_pointers(pointer_list):
             vprint('  Trampolining pointer to top')
             p.y = -1
         elif char == 'i':
-            vprint('  Fetching input')
-            try:
-                inp = input()
-                if inp:
-                    if is_int(inp):
-                        p.value = int(inp)
-                    else:
-                        p.value = ord(inp[0])
-            except EOFError:
-                p.value = p.value
+            p.value = read_input()
         elif char == '+':
             held = handle_operator_held(pointer_list, p)
             if held:
@@ -242,6 +254,7 @@ vprint(code)
 origins = numpy.asarray(numpy.where(code == 'O')).T
 vprint(origins)
 pointers = []
+input_buffer = []
 for i in range(0, len(origins)):
     pointers.append(pointer(origins[i], i))
 vprint(pointers)
