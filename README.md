@@ -43,6 +43,8 @@ Any character that is not a valid peg is essentially a comment or no-op, includi
     ;      - Destroy the bean
     (      - Increment the bean's value
     )      - Decrement the bean's value
+    [      - Dyadic min; hold first bean until a second hits, output the lower value and destroy the other
+    ]      - Dyadic max; hold first bean until a second hits, output the higher value and destroy the other
     :      - Set the bean's value to its spin (Right is 1, Left is 0)
     T      - Set the bean's value to 10
     x      - Set the bean's value to its x position in the code
