@@ -25,7 +25,7 @@ Note that despite being the standard spawn point for beans, `O` is otherwise con
     /      - Moves the bean to the left, and sets its spin to -1
     \      - Moves the bean to the right, and sets its spin to 1
     |      - Reverses the bean's current spin
-    v      - Halts any horizontal movement
+    a      - Sets the bean's value to the absolute of its value
     o      - Duplicates the bean, outputting one copy to the left and the other to the right
            - Each copy has its spin set according to the direction it was output
     "      - Enters the bean into string mode, the bean's value will be set to the Unicode 

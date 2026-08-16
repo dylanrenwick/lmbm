@@ -129,8 +129,8 @@ def run_pointers(pointer_list):
         elif char == '|':
             vprint('  Reflecting pointer direction')
             p.spin = -p.spin
-        elif char == 'v':
-            p.xvel = 0
+        elif char == 'a':
+            p.value = abs(p.value)
         elif char == 'o':
             vprint('  Creating new marble')
             newPoint = pointer([p.y, p.x - 1], len(pointer_list))
